@@ -152,6 +152,36 @@ Paste JSON here:<p/><textarea name=json cols=80 rows=24></textarea>
         self.pickMove(g)
 
 
+    def kachisou(g, depth):
+        
+        if depth > 0:
+                scoreList = []
+                valid_moves = g.ValidMoves()
+                for move in valid_moves:
+                        next = g.NextBoardPosition(move)
+                        scoreList.append(kachisou(next, depth-1))
+                if g.Next == 1:
+                        return point = max(scoreList)
+                else :
+                        return point = min(scoreList)
+                
+                        
+        else : 
+                point1 = 0
+                point2 = 0
+                for x in range(1,9):
+                   for y in range(1,9):
+                          d = g.Pos(x, y)
+                          if d == 1:
+                                point1 += 1
+                          elif d == 2:
+                                point2 += 1
+                return point = point1 - point2
+                
+                        
+                        
+
+
     def pickMove(self, g):
     	# Gets all valid moves.
     	valid_moves = g.ValidMoves()
@@ -163,7 +193,13 @@ Paste JSON here:<p/><textarea name=json cols=80 rows=24></textarea>
                 # TO STEP STUDENTS:
                 # You'll probably want to change how this works, to do something
                 # more clever than just picking a random move.
-	    	move = random.choice(valid_moves)
+                
+	    	#move = random.choice(valid_moves)
+                for move in vaild_move:
+                        next = g.NextBoardPosition(move)
+                        score = kachisou(next, 2)
+                        if socre > #ここで比較するんだよ
+                        
     		self.response.write(PrettyMove(move))
 
 app = webapp2.WSGIApplication([
