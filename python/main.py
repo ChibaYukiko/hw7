@@ -195,12 +195,26 @@ Paste JSON here:<p/><textarea name=json cols=80 rows=24></textarea>
                 # more clever than just picking a random move.
                 
 	    	#move = random.choice(valid_moves)
+                best_move = vaild_move[0]
+                if g.Next == 1:
+                        best_score = -float('inf')
+                else :
+                        best_score = float('inf')
                 for move in vaild_move:
+                        # if g.Next -> 1 then next.Next -> 2
+                        # score -> min
                         next = g.NextBoardPosition(move)
                         score = kachisou(next, 2)
-                        if socre > #ここで比較するんだよ
+                        if g.Next == 1:
+                                if socre > best_score:
+                                        best_move = move
+                                        best_score = score
+                        else :
+                                if score < best_score:
+                                        best_move = move
+                                        best_score = score
                         
-    		self.response.write(PrettyMove(move))
+    		self.response.write(PrettyMove(best_move))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
