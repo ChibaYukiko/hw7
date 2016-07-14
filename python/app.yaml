@@ -1,4 +1,4 @@
-application: othello-1372
+application: hw7othello-1372
 version: v1
 runtime: python27
 api_version: 1
